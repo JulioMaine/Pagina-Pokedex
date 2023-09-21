@@ -1,0 +1,27 @@
+ALTER procedure [dbo].[storedAgregarPokemon]
+@Numero int,
+@Nombre varchar (50),
+@Descripcion varchar (50),
+@UrlImagen varchar(300),
+@IdTipo int,
+@IdDebilidad int
+as
+insert into POKEMONS values (@Numero, @Nombre, @Descripcion, @UrlImagen, @IdTipo, @IdDebilidad, null, 1)
+
+
+ALTER procedure [dbo].[storedListar] as
+Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id, p.Activo 
+From POKEMONS P, ELEMENTOS E, ELEMENTOS D 
+Where E.Id = P.IdTipo And D.Id = P.IdDebilidad
+
+ALTER procedure [dbo].[storedModificarPokemon]
+@Numero int,
+@Nombre varchar(50),
+@Descripcion varchar(50),
+@UrlImagen varchar(300),
+@idTipo int,
+@idDebilidad int,
+@Id int
+as
+update POKEMONS set Numero = @Numero, Nombre = @Nombre, Descripcion = @Descripcion, 
+UrlImagen = @UrlImagen, IdTipo = @idTipo, IdDebilidad = @idDebilidad Where Id = @Id
