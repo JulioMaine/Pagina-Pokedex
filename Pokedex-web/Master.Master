@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Pokedex_web.Master" %>
+﻿z<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Pokedex_web.Master" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <%--<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="Default.aspx">Inicio</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,17 +24,52 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="TablaPokemons.aspx">Tabla de Pokemons</a>
-                            <a class="nav-link active" href="Tarjetas.aspx">Pokemons</a>
-                            <a class="nav-link active" href="">Favoritos</a>
-                            <a class="nav-link active" href="">Mi Perfil</a>
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="TablaPokemons.aspx">Tabla de Pokemons</a>
+                                <a class="navbar-brand" href="Tarjetas.aspx">Pokemons</a>
+                                <a class="navbar-brand" href="">Favoritos</a>
+                                <a class="navbar-brand" href="">Mi Perfil</a>
+                                <form class="d-flex" role="search">
+                                    <asp:Button ID="btnIngresar" runat="server" class="btn btn-success" Text="Ingresar" />
+                                    <asp:Button ID="btnRegistrarse" class="btn btn-outline-primary" runat="server" Text="Registrarse" />
+                                </form>
+                            </div>
                         </div>
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup2">
                         </div>
                     </div>
                 </div>
+            </nav>--%>
+            <nav class="navbar navbar-expand-lg bg-body-secondary" data-bs-theme="dark"  >
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="Default.aspx">Inicio</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item">
+                                <a class="nav-link " href="TablaPokemons.aspx">Tabla Pokemons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Tarjetas.aspx">Pokemons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Favoritos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Mi Perfil</a>
+                            </li>                          
+                        </ul>
+                        <form class="d-flex">
+                            <asp:Button ID="Button1" class="btn btn-success mx-2" runat="server" Text="Ingresar" />
+                            <asp:Button ID="Button2" runat="server" class="btn btn-outline-primary me-3" Text="Registrarse" />
+                        </form>
+                        
+                    </div>
+                </div>
             </nav>
-            <div>  
+            <div>
                 <br />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
