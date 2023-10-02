@@ -36,7 +36,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select id, email, pass, admin, imagenPerfil, nombre, apellido from USERS where email = @email and pass = @pass");
+                datos.setearConsulta("select id, email, pass, admin, imagenPerfil, nombre, apellido, fechaNacimiento from USERS where email = @email and pass = @pass");
                 datos.setearParametro("@email", trainee.Email);
                 datos.setearParametro("@pass", trainee.Password);
                 datos.ejecutarLectura();
@@ -47,8 +47,12 @@ namespace negocio
                     trainee.Admin = (bool)datos.Lector["admin"];
                     if (!(datos.Lector["imagenPerfil"] is DBNull))
                         trainee.Imagen = (string)datos.Lector["imagenPerfil"];
-                    trainee.Nombre = (string)datos.Lector["nombre"];
-                    trainee.Apellido = (string)datos.Lector["apellido"];
+                    if (!(datos.Lector["nombre"] is DBNull))
+                        trainee.Nombre = (string)datos.Lector["nombre"];
+                    if (!(datos.Lector["apellido"] is DBNull))
+                        trainee.Apellido = (string)datos.Lector["apellido"];
+                    if (!(datos.Lector["fechaNacimiento"] is DBNull))
+                        trainee.FechaNacimiento = (DateTime)datos.Lector["fechaNacimiento"];
                     return true;
                 }
 
@@ -70,10 +74,11 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update users set imagenPerfil = @imagenPerfil, nombre = @nombre, apellido = @apellido where id = @Id");
-                datos.setearParametro("@imagenPerfil", trainee.Imagen);
+                datos.setearConsulta("update users set imagenPerfil = @imagenPerfil, nombre = @nombre, apellido = @apellido, fechaNacimiento = @fecha where id = @Id");
+                datos.setearParametro("@imagenPerfil", (object)trainee.Imagen ?? DBNull.Value);
                 datos.setearParametro("@nombre", trainee.Nombre);
                 datos.setearParametro("@apellido", trainee.Apellido);
+                datos.setearParametro("@fecha", trainee.FechaNacimiento);
                 datos.setearParametro("@Id", trainee.Id);
                 datos.ejecutarAccion();
 
