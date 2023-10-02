@@ -15,6 +15,12 @@ namespace Pokedex_web
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["Trainee"]))
+            {
+                Session.Add("error", "Debes ser admin para poder ingresar.");
+                Response.Redirect("Error.aspx");
+            }
+
             FiltroAvanzado = ckbFiltroAvanzado.Checked;
             
             if (Session["listaFiltradaAvanzada"] != null)
